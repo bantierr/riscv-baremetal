@@ -13,9 +13,6 @@ hart0:
     # MIP set by hart 1
     csrrw zero, mie, 0x8
 
-    li t0, 0x800
-    csrrs zero, mie, t0
-
     # (c) if register mideleg exists, bit i is not set in mideleg.
 
     # set mtvec so we do not cause an exception
@@ -24,8 +21,6 @@ hart0:
 
     # Wait for interrupt from hart 0
     wfi                # Wait for interrupt
-
-    j hart0_task       # Jump to hart 1's task
 
 hart0_task:
 
