@@ -10,6 +10,5 @@ hart1:
     sw t1, 0(t0)
 
     # Infinite loop to prevent hart 0 from exiting
-loop:
-    j loop
+    wfi
 

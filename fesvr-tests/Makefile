@@ -7,7 +7,7 @@ RISCV_OBJDUMP ?= $(RISCV_PREFIX)-objdump -d
 
 CC = $(RISCV_PREFIX)-gcc
 
-build/app.elf: src/main.S src/hart1.S src/hart0.S | build
+build/app.elf: src/main.S | build
 	$(CC) $(RISCV_GCC_OPTS) $^ -o $@ $(LDFLAGS)
 	$(RISCV_OBJDUMP) $@ > $@.dump
 
@@ -15,7 +15,7 @@ build:
 	mkdir -p build
 
 run:
-	spike -d --isa=rv64g -p2 build/app.elf
+	spike -d --isa=rv64g build/app.elf
 
 .PHONY: clean
 clean:

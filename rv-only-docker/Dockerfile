@@ -61,6 +61,14 @@ RUN git clone https://github.com/riscv-software-src/riscv-isa-sim.git \
 && make -j ${N_CORES} \
 && make install
 
+RUN git clone https://github.com/riscv/riscv-tests \
+&& cd riscv-tests \
+&& git submodule update --init --recursive \
+&& autoconf \
+&& ./configure --prefix=${RISCV}/target \
+&& make -j ${N_CORES} \
+&& make install
+
 ARG USER_ID
 ARG GROUP_ID
 RUN groupadd -g ${GROUP_ID} cascader && \

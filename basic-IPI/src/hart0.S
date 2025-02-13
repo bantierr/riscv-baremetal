@@ -22,6 +22,10 @@ hart0:
     # Wait for interrupt from hart 0
     wfi                # Wait for interrupt
 
-hart0_task:
+    j hart0_task
 
-    j .       # Loop indefinitely (or replace with actual task)
+hart0_task:
+    li  gp,0x1
+    li	t5,0x80200000
+    sw	gp,0(t5)
+    j   hart0_task
